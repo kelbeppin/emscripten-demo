@@ -12,7 +12,7 @@ on:
 
 env:
   EMSDK_VER: 3.1.42
-  EMSDK_ROOT: '$GITHUB_WORKSPACE/emsdk-cache'
+  EMSDK_ROOT: '${{ github.workspace }}/emsdk-cache'
 
 jobs:
   build:
@@ -32,6 +32,9 @@ jobs:
       with:
         version: ${{ env.EMSDK_VER }}
         actions-cache-folder: ${{ env.EMSDK_ROOT }}
+        
+    - name: Tell me the truth
+      run: ls -la ${{ github.workspace }}/emsdk-cache
   
     - name: CMake Configure
       run: cmake --preset emscripten-release
