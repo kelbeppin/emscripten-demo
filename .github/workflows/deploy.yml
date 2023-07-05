@@ -13,7 +13,6 @@ on:
 env:
   EMSDK_VER: 3.1.42
   EMSDK_CACHE: 'emsdk-cache'
-  EMSDK_ROOT: '$GITHUB_WORKSPACE/$EMSDK_CACHE/emsdk-main/upstream/emscripten'
 
 jobs:
   build:
@@ -33,12 +32,14 @@ jobs:
       with:
         version: ${{ env.EMSDK_VER }}
         actions-cache-folder: ${{ env.EMSDK_CACHE }}
-        
-    - name: Tell me the truth
-      run: ls -la ${{ env.EMSDK_ROOT }}
-  
+
+    - name: Install dependencies
+      run: sudo apt-get -y install ninja-build
+
     - name: CMake Configure
-      run: cmake --preset emscripten-release
+      run: |
+        export EMSDK_ROOT=${{ env.EMSDK_CACHE }}/emsdk-main/upstream/emscripten
+        cmake --preset emscripten-release
   
     - name: CMake Build
       run: cmake --build out/build/emscripten-release --parallel 4
