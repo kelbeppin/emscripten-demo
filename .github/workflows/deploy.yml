@@ -12,7 +12,8 @@ on:
 
 env:
   EMSDK_VER: 3.1.42
-  EMSDK_ROOT: 'emsdk-cache'
+  EMSDK_CACHE: 'emsdk-cache'
+  EMSDK_ROOT: '$GITHUB_WORKFLOW/$EMSDK_CACHE/emsdk-main/upstream/emscripten'
 
 jobs:
   build:
@@ -25,13 +26,13 @@ jobs:
       id: cache-system-libraries
       uses: actions/cache@v2
       with:
-        path: ${{ env.EMSDK_ROOT }}
+        path: ${{ env.EMSDK_CACHE }}
         key: ${{ env.EMSDK_VER }}-${{ runner.os }}
         
     - uses: mymindstorm/setup-emsdk@v11
       with:
         version: ${{ env.EMSDK_VER }}
-        actions-cache-folder: ${{ env.EMSDK_ROOT }}
+        actions-cache-folder: ${{ env.EMSDK_CACHE }}
         
     - name: Tell me the truth
       run: ls -la ${{ env.EMSDK_ROOT }}
