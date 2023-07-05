@@ -18,7 +18,11 @@ target_link_libraries(${TARGET_NAME} PRIVATE glm::glm)
 if(EMSCRIPTEN)
 	set(CMAKE_EXECUTABLE_SUFFIX ".html")
 	target_compile_options(${TARGET_NAME} PRIVATE -sUSE_SDL=2 -pthread)
-	target_link_options(${TARGET_NAME} PRIVATE -sUSE_SDL=2 -pthread -sMIN_WEBGL_VERSION=2)
+	target_link_options(${TARGET_NAME} PRIVATE
+		-sUSE_SDL=2
+		-pthread
+		-sMIN_WEBGL_VERSION=2
+		--shell-file "${CMAKE_SOURCE_DIR}/src/shell.html")
 else()
 	target_sources(${TARGET_NAME} PRIVATE "glad.c")
 	target_link_libraries(${TARGET_NAME} PRIVATE OpenGL::GL SDL2::SDL2)
