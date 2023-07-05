@@ -44,10 +44,19 @@ jobs:
     - name: CMake Build
       run: cmake --build out/build/emscripten-release --parallel 4
   
+    - name: Copy files
+      run: |
+        mkdir -p _site
+        cp out/build/emscripten-release/src/index.html _site/
+        cp out/build/emscripten-release/src/index.js _site/
+        cp out/build/emscripten-release/src/index.wasm _site/
+        cp out/build/emscripten-release/src/index.worker.js _site/
+        cp src/coi-serviceworker.min.js _site/
+
     - name: Upload artifacts
       uses: actions/upload-pages-artifact@v1
       with:
-        path: "out/build/emscripten-release/src/"
+        path: _site
 
   deploy:
     needs: build
