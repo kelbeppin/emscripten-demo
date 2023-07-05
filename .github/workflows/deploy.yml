@@ -13,7 +13,7 @@ on:
 env:
   EMSDK_VER: 3.1.42
   EMSDK_CACHE: 'emsdk-cache'
-  EMSDK_ROOT: '$GITHUB_WORKFLOW/$EMSDK_CACHE/emsdk-main/upstream/emscripten'
+  EMSDK_ROOT: '$GITHUB_WORKSPACE/$EMSDK_CACHE/emsdk-main/upstream/emscripten'
 
 jobs:
   build:
