@@ -47,11 +47,10 @@ jobs:
     - name: Copy files
       run: |
         mkdir -p _site
-        cp out/build/emscripten-release/src/index.html _site/
-        cp out/build/emscripten-release/src/index.js _site/
-        cp out/build/emscripten-release/src/index.wasm _site/
-        cp out/build/emscripten-release/src/index.worker.js _site/
-        cp out/build/emscripten-release/src/coi-serviceworker.min.js _site/
+        BUILD_OUTPUT=out/build/emscripten-release/src
+        cp $BUILD_OUTPUT/index.{html,js,wasm} _site/
+        [[ -e $BUILD_OUTPUT/index.worker.js ]] && cp $BUILD_OUTPUT/index.worker.js _site/
+        [[ -e $BUILD_OUTPUT/coi-serviceworker.min.js ]] && cp $BUILD_OUTPUT/coi-serviceworker.min.js _site/
 
     - name: Upload artifacts
       uses: actions/upload-pages-artifact@v1
