@@ -20,7 +20,6 @@ if(EMSCRIPTEN)
 	target_compile_options(${TARGET_NAME} PRIVATE -sUSE_SDL=2)
 	target_link_options(${TARGET_NAME} PRIVATE
 		-sUSE_SDL=2
-		-sMIN_WEBGL_VERSION=2
 		--shell-file "${CMAKE_SOURCE_DIR}/src/shell.html")
 	
 	add_custom_command(TARGET ${TARGET_NAME}
