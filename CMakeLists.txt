@@ -30,4 +30,5 @@ if(NOT EMSCRIPTEN)
 	FetchContent_MakeAvailable(SDL2)
 endif()
 
+add_subdirectory("third-party")
 add_subdirectory("src")

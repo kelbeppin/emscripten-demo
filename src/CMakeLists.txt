@@ -23,9 +23,14 @@ if(EMSCRIPTEN)
 		-pthread
 		-sMIN_WEBGL_VERSION=2
 		--shell-file "${CMAKE_SOURCE_DIR}/src/shell.html")
+	
+	add_custom_command(TARGET ${TARGET_NAME}
+		POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy_if_different
+				"${CMAKE_SOURCE_DIR}/src/coi-serviceworker.min.js"
+				$<TARGET_FILE_DIR:${TARGET_NAME}>)
 else()
-	target_sources(${TARGET_NAME} PRIVATE "glad.c")
-	target_link_libraries(${TARGET_NAME} PRIVATE OpenGL::GL SDL2::SDL2)
+	target_link_libraries(${TARGET_NAME} PRIVATE glad OpenGL::GL SDL2::SDL2)
 
 	if(WIN32)
 		target_link_libraries(${TARGET_NAME} PRIVATE SDL2::SDL2main)

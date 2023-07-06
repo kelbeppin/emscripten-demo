@@ -51,7 +51,7 @@ jobs:
         cp out/build/emscripten-release/src/index.js _site/
         cp out/build/emscripten-release/src/index.wasm _site/
         cp out/build/emscripten-release/src/index.worker.js _site/
-        cp src/coi-serviceworker.min.js _site/
+        cp out/build/emscripten-release/src/coi-serviceworker.min.js _site/
 
     - name: Upload artifacts
       uses: actions/upload-pages-artifact@v1

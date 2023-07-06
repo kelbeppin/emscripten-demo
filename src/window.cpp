@@ -1,7 +1,10 @@
 
 #include <stdexcept>
-#include "gl.hpp"
 #include "window.hpp"
+
+#ifndef __EMSCRIPTEN__
+#include <glad/glad.h>
+#endif
 
 //------------------------------------------------------------------------------
 

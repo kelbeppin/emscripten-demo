@@ -3,6 +3,10 @@
 #include <stdexcept>
 #include "app.hpp"
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
+
 //------------------------------------------------------------------------------
 
 xyz::app::app()

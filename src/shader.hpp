@@ -2,7 +2,12 @@
 #pragma once
 
 #include <vector>
-#include "gl.hpp"
+
+#ifndef __EMSCRIPTEN__
+#include <glad/glad.h>
+#else
+#include <GLES2/gl2.h>
+#endif
 
 namespace xyz
 {

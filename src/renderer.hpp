@@ -1,7 +1,6 @@
 
 #pragma once
 
-#include <vector>
 #include <glm/glm.hpp>
 #include "bus.hpp"
 #include "shader.hpp"
